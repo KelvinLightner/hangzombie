@@ -28,6 +28,15 @@ const reducers = {
         return state;
     }
   },
+
+  hangman: (state = 0, action) => {
+    switch (action.type) {
+      case INCREMENT_HANGMAN:
+        return state + 1;
+      default:
+        return state;
+    }
+  },
 };
 
 export default reducers;
