@@ -11,7 +11,12 @@ import {
 } from '../actions/types';
 
 const reducers = {
-
+  config: (state, action) => {
+    return {
+      MAX_HANGMAN: 6,
+      MAX_WORD_LENGTH: 15
+    };
+  },
 };
 
 export default reducers;
