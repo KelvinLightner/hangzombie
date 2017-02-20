@@ -1,2 +1,7 @@
-# hangzombie
-Hangman Game using React with Redux
+Commands to Start:
+```
+$ npm install
+```
+```
+$ npm start
+```
