@@ -62,6 +62,15 @@ const reducers = {
         return state;
     }
   },
+
+  currentLetter: (state = null, action) => {
+    switch (action.type) {
+      case NEW_LETTER:
+        return action.letter;
+      default:
+        return state;
+    }
+  },
 };
 
 export default reducers;
