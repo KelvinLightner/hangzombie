@@ -37,6 +37,31 @@ const reducers = {
         return state;
     }
   },
+
+  word: (state = { word: '', fetching: false, error: null }, action) => {
+    switch (action.type) {
+      case FETCH_WORD:
+        return {
+          word: '',
+          fetching: true,
+          error: null
+        };
+      case SET_WORD:
+        return {
+          word: action.word,
+          fetching: false, 
+          error: null
+        };
+      case SET_FETCH_WORD_ERROR:
+        return {
+          word: '',
+          fetching: false,
+          error: action.error
+        };
+      default:
+        return state;
+    }
+  },
 };
 
 export default reducers;
