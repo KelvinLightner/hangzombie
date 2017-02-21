@@ -1,9 +1,15 @@
 import React from 'react';
 
 import AppComponent from './AppComponent.jsx';
-
+import Gallows from './Gallows.jsx';
+import IncorrectLetters from './IncorrectLetters.jsx';
+import CorrectLetters from './CorrectLetters.jsx';
+import GameEndBoard from './GameEndBoard.jsx';
+import getRandomWord from './../actions/async-actions';
+import Welcome from './Welcome.jsx';
 
 class HangmanGame extends AppComponent {
+
   constructor(props) {
     super(props);
     this._bind('_handleUserInput');
@@ -65,10 +71,15 @@ class HangmanGame extends AppComponent {
       this.context.store.dispatch({ type: 'USER_WIN' });
     }
   }
-
+  
   render() {
     return (
       <div className="hangman-game">
+        <Gallows />
+        <Welcome />
+        <IncorrectLetters />
+        <CorrectLetters />
+        <GameEndBoard />
       </div>
     );
   }
