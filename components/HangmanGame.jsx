@@ -35,6 +35,11 @@ class HangmanGame extends AppComponent {
 
     this.context.store.dispatch({ type: 'NEW_LETTER', letter });
 
+    const inWord = word.includes(letter);
+    const inCorrect = correctLetters.includes(letter);
+    const inIncorrect = incorrectLetters.includes(letter);
+
+
   render() {
     return (
       <div className="hangman-game">
