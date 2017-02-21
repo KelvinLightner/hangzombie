@@ -13,6 +13,10 @@ class HangmanGame extends AppComponent {
     document.addEventListener('keypress', this._handleUserInput);
     getRandomWord();
   }
+
+  componentWillUmount() {
+    document.removeEventListener('keypress', this._handleUserInput);
+  }
   
   render() {
     return (
