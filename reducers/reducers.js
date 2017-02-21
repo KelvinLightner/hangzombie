@@ -80,6 +80,18 @@ const reducers = {
         return state;
     }
   },
+
+  incorrectLetters: (state = [], action) => {
+    switch (action.type) {
+      case INSERT_INCORRECT_LETTER:
+        return [...state, action.letter];
+      default:
+        return state;
+    }
+  }
+};
+
+export default reducers;
 };
 
 export default reducers;
