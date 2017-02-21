@@ -18,3 +18,19 @@ $red-light: #FFADAD;
 $skin-color: #327A32; 
 $base-font: 'Barrio';
 $welcome-font: 'Griffy';
+
+/* mixins */
+
+@mixin center-both {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin triangle ($size, $color) {
+  border-right: $size solid $color;
+  border-bottom: $size solid $color;
+  border-left: $size solid transparent;
+  border-top: $size solid transparent;
+}
