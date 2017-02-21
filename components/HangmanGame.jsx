@@ -39,7 +39,17 @@ class HangmanGame extends AppComponent {
     const inCorrect = correctLetters.includes(letter);
     const inIncorrect = incorrectLetters.includes(letter);
 
+    if (inWord && !inCorrect) {
+      this.context.store.dispatch({ type: 'INSERT_CORRECT_LETTER', letter });
+    } else if (!inWord && !inIncorrect) {
+      this.context.store.dispatch({ type: 'INSERT_INCORRECT_LETTER', letter });
+      this.context.store.dispatch({ type: 'INCREMENT_HANGMAN' });
+    }
 
+    this._checkResult();
+  }
+
+    
   render() {
     return (
       <div className="hangman-game">
