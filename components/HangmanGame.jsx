@@ -33,6 +33,8 @@ class HangmanGame extends AppComponent {
       return;
     }
 
+    this.context.store.dispatch({ type: 'NEW_LETTER', letter });
+
   render() {
     return (
       <div className="hangman-game">
