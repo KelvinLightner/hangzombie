@@ -4,6 +4,10 @@ import AppComponent from './AppComponent.jsx';
 
 
 class HangmanGame extends AppComponent {
+  constructor(props) {
+    super(props);
+    this._bind('_handleUserInput');
+  }
   
   render() {
     return (
