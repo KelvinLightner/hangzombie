@@ -65,3 +65,541 @@ html, body {
     margin-top: 0%;
   }
 }
+
+.shake { 
+  animation: shake 0.15s ease 3;
+}
+
+.oval-button {
+  $yellow: #FCA900;
+  $white: #FFF;
+  $red: #E50000;
+
+  display: inline-block;
+  padding: 0.7em 2em;
+  transition: all 300ms ease;
+  position: relative;
+  color: $gray-dark;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: $red;
+  font-weight: 900;
+
+  &:hover {
+    color: $white;
+  }
+
+  &:focus {
+    background: $yellow;
+    color: $white;
+  } 
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background 300ms;
+
+  &.visible {
+    display: block;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+  }
+
+  &.hidden {
+    display: none;
+    background: #FFF;
+  }
+}
+
+.result-label {
+  text-transform: uppercase;
+}
+
+.letter-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.letter {
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+
+
+#root {
+  background: url('./war.jpg');
+  background-size: cover;
+  font-family: $base-font;
+  position: relative;
+  height: 100%;
+}
+
+.hangman-game {
+  @include center-both;
+  overflow: hidden;
+  filter: alpha(opacity=100);
+  border-radius: 5px;
+  width: 100%;
+  height: 75%;
+
+  &:after {
+    position: absolute;
+    content: '';
+    display: block;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.game-end .oval-button {
+  font-size: 1.2em;
+}
+
+.game-end {
+  transition: top 1s cubic-bezier(.48,.27,1,0);
+  z-index: 10;
+}
+
+.game-end .content {
+  @include center-both;
+  top: -1000px;
+}
+
+.game-end.visible .content {
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
+
+.game-end .result-label {
+  font-size: 3em;
+  text-align: center;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.game-end .error {
+  color: $red-light;
+  font-weight: normal;
+  margin: 20px;
+}
+
+.game-end .answer {
+  color: black;
+  font-weight: normal;
+  margin: 20px;
+  font-size: 2em;
+}
+
+.incorrect-area {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  padding-left: 35px;
+  background: $blue-light;
+}
+
+.incorrect-area .result-label {
+  color: $gray-dark;
+  font-size: 1em;
+}
+
+.letter.incorrect {
+  color: $white-almost;
+  font-size: 2.5em;
+  margin-right: 0.2em;
+}
+
+
+.correct-area {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  perspective: 500px;
+}
+
+.letter.correct,
+.letter.empty {
+  position: relative;
+  width: 60px;
+  height: 70px;
+  margin: 0 2px;
+  border-radius: 4px;
+}
+
+.letter.correct {
+  color: $white-almost;
+  font-weight: 900;
+  font-size: 2em;
+  position: relative;
+  perspective: 800px;
+
+  & .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+
+    & div {
+      margin: 0;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: $blue-pants;
+      padding-top: 16px;
+      border-radius: 4px;
+    }
+
+    & div.back {
+      transform: rotateX( 540deg );  
+    }
+  }
+
+  &.guessed .card {
+    transform: rotateX( 540deg );
+  }
+}
+
+.letter.empty {
+  background: $gray-light;
+  display: none;
+}
+
+.gallows {
+  position: absolute;
+  height: 400px;
+  width: 200px;
+  top: 20%;
+  left: 45%;
+
+  .bar {
+    position: absolute;
+    background: $gray-dark;
+    border-radius: 4px;
+    height: 15px;
+  }
+
+  .horizontal-bar {
+    width: 130px;
+    top: 35px;
+    left: -5px;
+  }
+
+  .vertical-bar {
+    width: 50px;
+    transform: rotate(90deg);
+    top: 55px;
+    left: 73px;
+  }
+
+  .long-vertical-bar {
+    width: 360px;
+    transform: rotate(90deg);
+    top: 175px;
+    left: -160px;
+  }
+
+  
+}
+
+.poor-dude {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 65px;
+  
+  .head {
+    visibility: hidden;
+    position: relative;
+    z-index: 2;
+    background: url('./head1.png');
+    background-repeat: no-repeat;
+    background-size: 96px 106px;
+    width: 100px;
+    height: 120px;
+    margin: 0 auto;
+    transition: transform 600ms ease;
+  }
+
+  .neck {
+    visibility: hidden;
+    background: $skin-color;
+    width: 23px;
+    height: 33px;
+    border-radius: 10px;
+    margin: -25px auto 0;
+  }
+
+  .body-wrapper {
+    position: relative;
+    width: 100%;
+    height: 170px;
+  }
+
+  .chest {
+    visibility: hidden;
+    width: 52px;
+    height: 82px;
+    margin: -10px auto 0;
+    background: $blue-pants;
+    border-radius: 5px;
+    position: relative;
+
+    &:before, 
+    &:after {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 80%;
+      content: '';
+      display: block;
+    }
+
+    &:before {
+      background: $green-ligth;
+      border-top-left-radius: 5px;
+      left: 0;
+    }
+
+    &:after {
+      background: $green-dark;
+      border-top-right-radius: 5px;
+      right: 0;
+    }
+  }
+
+  .arms {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    &:before,
+    &:after {
+      visibility: hidden;
+      content: '';
+      width: 23px;
+      height: 67px;
+      position: absolute;
+      border-radius: 5px;
+      top: 0;
+    }
+
+    &:before {
+      background: $green-dark;
+      left: 50%;
+      transform: rotate(-45deg);
+      transform-origin: 20px 0;
+    }
+
+    &:after {
+      background: $green-ligth;
+      right: 50%;
+      transform: rotate(45deg);
+      transform-origin: 0 0;
+    }
+  }
+
+  .hands {
+    position: absolute;
+    width: 100%;
+    height: 65px;
+    top: 0;
+
+    &:before,
+    &:after {
+      visibility: hidden;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      background: $skin-color;
+    }
+
+    &:before {
+      left: 28px;
+    }
+
+    &:after {
+      right: 28px;
+    }
+  }
+
+  .legs {
+    width: 85px;
+    height: 89px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 76px;
+    z-index: 10;
+
+    &:before,
+    &:after {
+      visibility: hidden;
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 87px;
+      background: $blue-pants;
+      border-radius: 5px;
+      top: 0;
+    }
+
+    &:before {
+      left: 50%;
+      transform: rotate(-12deg);
+      transform-origin: 0 0;
+    }
+
+    &:after {
+      right: 50%;
+      transform: rotate(12deg);
+      transform-origin: 25px 0;
+    }
+  }
+
+  .feet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &:before,
+    &:after {
+      visibility: hidden;
+      content: '';
+      position: absolute;
+      width: 41px;
+      height: 14px;
+      background: $skin-color;
+      border-radius: 5px;
+      bottom: 0;
+    }
+
+    &:before {
+      right: 39px;
+      transform: rotate(-8deg);
+      transform-origin: 0 0;
+    }
+
+    &:after {
+      left: 39px;
+      transform: rotate(8deg);
+      transform-origin: 41px 0;
+    }
+  }
+}
+
+
+.sleep-well-angel .poor-dude {
+  animation: sleep-well-angel 3000ms ease infinite;
+  
+  .head {
+    transform: rotate(-180deg);
+  }
+
+  .legs {
+    transform: rotate(-180deg);
+  }
+
+  .arms {
+    transform: rotate(-180deg);
+  }
+
+  .hands {
+    transform: rotate(-180deg);
+  }
+}
+
+.poor-dude.stadium-1 {
+  & .head { visibility: visible }
+}
+
+
+
+.poor-dude.stadium-2 {
+  & .head,
+  & .neck,
+  & .chest { 
+    visibility: visible 
+  }
+}
+
+
+
+.poor-dude.stadium-3 {
+  & .head,
+  & .neck,
+  & .chest,
+  & .arms:after,
+  & .arms:before { 
+    visibility: visible 
+  }
+}
+
+
+
+.poor-dude.stadium-4 {
+  & .head,
+  & .neck,
+  & .chest,
+  & .arms:after,
+  & .arms:before,
+  & .hands:after,
+  & .hands:before { 
+    visibility: visible 
+  }
+}
+
+
+
+.poor-dude.stadium-5 {
+  & .head,
+  & .neck,
+  & .chest,
+  & .arms:after,
+  & .arms:before,
+  & .hands:after,
+  & .hands:before,
+  & .legs:after,
+  & .legs:before { 
+    visibility: visible 
+  }
+}
+
+
+
+.poor-dude.stadium-6 {
+  & .head,
+  & .neck,
+  & .chest,
+  & .arms:after,
+  & .arms:before,
+  & .hands:after,
+  & .hands:before,
+  & .legs:after,
+  & .legs:before,
+  & .feet:after,
+  & .feet:before { 
+    visibility: visible 
+  }
+}
