@@ -34,3 +34,34 @@ $welcome-font: 'Griffy';
   border-left: $size solid transparent;
   border-top: $size solid transparent;
 }
+
+/* html elements */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* common classes */
+
+.welcome {
+  font-size: 3em;
+  text-align: center;
+  color: yellowgreen;
+  text-shadow: 0px 3px 0px #b2a98f,
+    0px 14px 10px rgba(0,0,0,0.15),
+    0px 24px 2px rgba(0,0,0,0.1),
+    0px 34px 30px rgba(0,0,0,0.1);
+
+  &.subheader {
+    font-size: .6em;
+    margin-top: 0%;
+  }
+}
