@@ -22,7 +22,17 @@ class HangmanGame extends AppComponent {
     const letter = String.fromCharCode(e.which).toLowerCase();
     const { gameState: { win, over }, hangman, word: { word }, correctLetters, incorrectLetters } = this.context.store.getState();
     const enterPressed = e.keyCode === 13;
-    
+
+    if (win || over) {
+      if (enterPressed) {
+        getRandomWord();
+      } else {
+        console.warn('Reset game to continue.');
+      }
+      
+      return;
+    }
+
   render() {
     return (
       <div className="hangman-game">
