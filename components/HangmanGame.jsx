@@ -49,7 +49,23 @@ class HangmanGame extends AppComponent {
     this._checkResult();
   }
 
-    
+  _checkResult() { 
+    const { config: { MAX_HANGMAN }, hangman, word: { word }, correctLetters } = this.context.store.getState();
+
+    if (hangman >= MAX_HANGMAN) {
+      this.context.store.dispatch({ type: 'GAME_OVER' });
+      return; 
+    }
+
+    const win = word.split('').every((letter) => { 
+      return correctLetters.includes(letter);
+    });
+
+    if (win) {
+      this.context.store.dispatch({ type: 'USER_WIN' });
+    }
+  }
+
   render() {
     return (
       <div className="hangman-game">
