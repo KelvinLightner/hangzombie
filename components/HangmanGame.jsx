@@ -17,7 +17,12 @@ class HangmanGame extends AppComponent {
   componentWillUmount() {
     document.removeEventListener('keypress', this._handleUserInput);
   }
-  
+
+  _handleUserInput(e) { 
+    const letter = String.fromCharCode(e.which).toLowerCase();
+    const { gameState: { win, over }, hangman, word: { word }, correctLetters, incorrectLetters } = this.context.store.getState();
+    const enterPressed = e.keyCode === 13;
+    
   render() {
     return (
       <div className="hangman-game">
