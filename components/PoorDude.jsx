@@ -27,3 +27,8 @@ PoorDude.contextTypes = {
 };
 
 export default PoorDude;
+
+// Condtional Rendering of Elements on a Page
+// 1. Return all necessary elements to the div
+// 2. Receive state of object to be updated from the store (store.getState())
+// 3. Use string interpolation to update the css class being rendered to the screen

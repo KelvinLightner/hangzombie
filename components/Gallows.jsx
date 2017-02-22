@@ -4,6 +4,7 @@ import PoorDude from './PoorDude.jsx';
 
 class Gallows extends AppComponent {
   render() {
+    // receive gameState from store 
     const { gameState: { over } } = this.context.store.getState();
     let className = ['gallows'];
 
@@ -27,3 +28,8 @@ Gallows.contextTypes = {
 };
 
 export default Gallows;
+
+// Condtional Rendering of Elements on a Page
+// 1. Return all necessary elements to the div
+// 2. Receive state of object to be updated from the store (store.getState())
+// 3. Use string interpolation to update the css class being rendered to the screen

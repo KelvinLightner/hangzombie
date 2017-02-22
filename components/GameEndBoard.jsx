@@ -9,12 +9,14 @@ class GameEndBoard extends AppComponent {
   }
 
   _setNewWord() {
-    // getRandomWord();
     window.location.reload()
   }
 
   render() {
+    // receive state objects from the store
     const { gameState: { win, over }, word: { word, error } } = this.context.store.getState();
+    // define the label based on the state of win or whether the game is over
+    // refactor code to use ternary operators
     const label = win ? 'CONGRATS - YOU WON!' : 'SORRY - GAME OVER!';
     let className = ['overlay', 'game-end'];
 
@@ -26,10 +28,11 @@ class GameEndBoard extends AppComponent {
     
     const answer = !over ? '' : (
       <div className="answer">
-        The word is {word}. 
+        The missed word is {word}. 
       </div>
     );
     
+    // console log error or render problem to screen
     const errorMessage = !error ? '' : (
       <div className="error">
         {error}
@@ -54,3 +57,8 @@ GameEndBoard.contextTypes = {
 };
 
 export default GameEndBoard;
+
+// Condtional Rendering of Elements on a Page
+// 1. Return all necessary elements to the div
+// 2. Receive state of object to be updated from the store (store.getState())
+// 3. Use string interpolation to update the css class being rendered to the screen
